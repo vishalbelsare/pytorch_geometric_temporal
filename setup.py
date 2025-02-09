@@ -3,22 +3,14 @@ from setuptools import find_packages, setup
 install_requires = [
     "decorator==4.4.2",
     "torch",
+    "cython",
     "torch_sparse",
     "torch_scatter",
-    "torch_cluster",
-    "torch_spline_conv",
-    "torch_geometric==1.7.0",
+    "torch_geometric",
     "numpy",
-    "scipy",
-    "tqdm",
-    "six",
+    "networkx",
 ]
-
-setup_requires = ["pytest-runner"]
-
-tests_require = ["pytest", "pytest-cov", "mock", "unittest"]
-
-
+tests_require = ["pytest", "pytest-cov", "mock", "networkx", "tqdm"]
 
 keywords = [
     "machine-learning",
@@ -45,17 +37,18 @@ keywords = [
 setup(
     name="torch_geometric_temporal",
     packages=find_packages(),
-    version="0.43",
+    version="0.55.0",
     license="MIT",
     description="A Temporal Extension Library for PyTorch Geometric.",
     author="Benedek Rozemberczki",
     author_email="benedek.rozemberczki@gmail.com",
     url="https://github.com/benedekrozemberczki/pytorch_geometric_temporal",
-    download_url="https://github.com/benedekrozemberczki/pytorch_geometric_temporal/archive/v_00043.tar.gz",
+    download_url="https://github.com/benedekrozemberczki/pytorch_geometric_temporal/archive/v0.54.0.tar.gz",
     keywords=keywords,
     install_requires=install_requires,
-    setup_requires=setup_requires,
-    tests_require=tests_require,
+    extras_require={
+        "test": tests_require,
+    },
     python_requires=">=3.6",
     classifiers=[
         "Development Status :: 3 - Alpha",

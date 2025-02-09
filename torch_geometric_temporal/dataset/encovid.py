@@ -1,7 +1,7 @@
-import io
 import json
+import ssl
+import urllib.request
 import numpy as np
-from six.moves import urllib
 from ..signal import DynamicGraphTemporalSignal
 
 
@@ -22,7 +22,8 @@ class EnglandCovidDatasetLoader(object):
 
     def _read_web_data(self):
         url = "https://raw.githubusercontent.com/benedekrozemberczki/pytorch_geometric_temporal/master/dataset/england_covid.json"
-        self._dataset = json.loads(urllib.request.urlopen(url).read())
+        context = ssl._create_unverified_context()
+        self._dataset = json.loads(urllib.request.urlopen(url, context=context).read())
 
     def _get_edges(self):
         self._edges = []
